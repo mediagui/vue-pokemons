@@ -1,54 +1,48 @@
 <template>
   <div class="pokemon-container">
-    
-    <img v-if="!showPokemon"
+    <!-- Si no hay que mostrar el pokemon, mostramos su sombra -->
+    <img
+      v-if="!showPokemon"
       :src="imgSrc"
       class="hidden-pokemon"
       alt="pokemon"
     />
 
-
-    <img v-else
-      :src="imgSrc"
-      class="fade-in"
-      alt="pokemon"
-    />
-
+    <!-- En caso contrario, mostramos el pokemon -->
+    <img v-else :src="imgSrc" class="fade-in" alt="pokemon" />
   </div>
 </template>
 
 <script>
-
-
 export default {
-
-  props:{
+  props: {
+    // Id del pokemon del que hay que obtener la imagen
     pokemonId: {
       type: Number,
       required: true,
     },
+    // Usada para indicar si hay que mostrar el pokemon
     showPokemon: {
       type: Boolean,
       required: true,
-      default: false
-    }
+      default: false,
+    },
   },
-  computed:{
+  computed: {
+    // Usamos una funcion computada para obtener la imagen y la sombra del pokemon a adivinar
     imgSrc() {
-      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${ this.pokemonId }.svg`
-    }
-  }
-
-
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${this.pokemonId}.svg`;
+    },
+  },
 };
 </script>
 
 <style scoped>
-/* Pokemon Picture */
 .pokemon-container {
   height: 200px;
-    margin: 0 auto; 
+  margin: 0 auto;
 }
+
 img {
   height: 200px;
   user-select: none;
@@ -60,6 +54,4 @@ img {
 .hidden-pokemon {
   filter: brightness(0);
 }
-
-
 </style>

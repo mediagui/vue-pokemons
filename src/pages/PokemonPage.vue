@@ -23,48 +23,75 @@
     </template>
 
   </div>
+
 </template>
 
 <script>
+// Si el export es default (sin nombre), no se ponen las llaves para hacer la importación
 import PokemonOptions from "@/components/PokemonOptions.vue";
 import PokemonPicture from "@/components/PokemonPicture.vue";
 
 import getPokemonOptions from "@/helpers/getPokemonOptions";
 
 export default {
+
   components: { PokemonPicture, PokemonOptions },
+
   data() {
+    // Función en la que se devuelven propiedades reactivas (monitorizadas por Vue)
     return {
-      pokemonArr: [],
-      pokemon: null,
-      showPokemon: false,
-      showAnswer: false,
-      message: '',
+      pokemonArr: [], // array de pokemons de entre los que hay que adivinar el pokemon
+      pokemon: null, // pokemon a adivinar
+      showPokemon: false, // muestra el pokemon cuando es true, mientras muestra la sombra
+      showAnswer: false, // muestra la respuesta cuando adivinamos seleccionamos una opción
+      message: '', // mensaje a mostrar tanto si adivinamos el pokemon como si no lo hacemos
     };
   },
+
   methods: {
+    /**
+     * Asigna el pokemon que hay que adivinar a la propiedad this.pokemon
+     */
     async mixPokemonsArray() {
+
+      // optenemos el array de pokemons
       this.pokemonArr = await getPokemonOptions();
 
-      const rndInt = Math.floor(Math.random() * 4); //Seleccionamos un número entre 0 y 3
+      // calculamos un número aleatorio entre 0 y 3
+      const rndInt = Math.floor(Math.random() * 4); 
 
-      this.pokemon = this.pokemonArr[rndInt]; // Seleccionamos el pokemon basado. Este es el pokemon que habrá que adivinar
+      // Seleccionamos el pokemon a adivinar haciendo uso del valor anterior (rndInt)
+      this.pokemon = this.pokemonArr[rndInt]; 
     },
+
+    /**
+     * Comprueba la respuesta en función del id del pokemon seleccionado
+     * @param {selectedId} Id del pokemon
+     */
     checkAnswer( selectedId ){
 
+      // Mostramos el pokemon y la respuesta tanto si hemos acertado como si no.
       this.showPokemon=true
       this.showAnswer=true
 
+      
       if(selectedId === this.pokemon.id){
+
+        // Si hemos acertado
 
         this.message=`Correcto, ${ this.pokemon.name }`
 
       } else {
 
+        // si no hemos hacertado
+
         this.message=`Ooops, era ${ this.pokemon.name }`
       }
  
     },
+    /**
+     * Reinicia el juego
+     */
     newGame(){
 
       this.showPokemon=false
@@ -76,6 +103,8 @@ export default {
     }
   },
   mounted() {
+    // Una vez se ha montado la aplicación, hacemos uso del hook y 
+    // seleccionamos el pokemon a adivinar
     this.mixPokemonsArray();
   },
 };
