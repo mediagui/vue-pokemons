@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PokemonOptions Componente debe hacer match con el snapshot 1`] = `
+<div class="options-container">
+  <ul>
+    <!-- 
+        Recorremos el array de pokemons y pintamos su nombre.
+
+        Al hacer click emitimos un evento personalizado (selection-pokemon) 
+        y enviamos el id del pokemon seleccionado.
+      -->
+    <li>pikachu</li>
+    <li>charmander</li>
+    <li>venusaur</li>
+    <li>mew</li>
+  </ul>
+</div>
+`;
