@@ -5,7 +5,7 @@ import pokemonApi from "@/api/pokemonApi";
  * Devuelve un array de pokemons
  * @returns Array de objetos pokemon
  */
-const getPokemons = () => {
+export const getPokemons = () => {
 
     const pokemonsArr = Array.from(Array(650)) // Crea un array basado en el que se le pasa como parámetro
 
@@ -34,7 +34,7 @@ const getPokemonOptions = async () => {
  * Función asíncrona que obtiene los nombres de los pokemons a partir del array que recibe
  * @param {[a,b,c,d]} Array de pokemons 
  */
-const getPokemonNames = async ([a, b, c, d] = []) => {
+ export const getPokemonNames = async ([a, b, c, d] = []) => {
 
     // const resp = await pokemonApi.get(`/1`)
 
