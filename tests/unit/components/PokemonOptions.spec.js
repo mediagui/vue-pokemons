@@ -50,7 +50,7 @@ describe('PokemonOptions Componente', () => {
         li3.trigger('click')
         li4.trigger('click')
 
-        expect( wrapper.emitted('selection-pokemon').length ).toBe(1) // Por lo menos emitido 1 vez
+        expect( wrapper.emitted('selection-pokemon').length ).toBe(4) // Por lo menos emitido 1 vez
         expect( wrapper.emitted('selection-pokemon')[0] ).toStrictEqual([5]) // Se emite el evento con un arreglo de un elemento con el valor 5
         expect( wrapper.emitted('selection-pokemon')[1] ).toStrictEqual([10]) // Se emite el evento con un arreglo de un elemento con el valor 10
         expect( wrapper.emitted('selection-pokemon')[2] ).toStrictEqual([15]) // Se emite el evento con un arreglo de un elemento con el valor 15
